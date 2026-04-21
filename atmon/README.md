@@ -130,6 +130,25 @@ atmon/
    └─ atmon_dashboard/                  # Flutter macOS desktop dashboard
 ```
 
+## Required SDK patch
+
+The `gkc-enhance-api` branch contains a bug in `AtCollection.getKeys` where
+the scan regex includes a `(^|:)` alternation that is rejected by the atServer
+with `Invalid syntax. scan`. After cloning the SDK you must apply a one-line
+fix before compiling the agent:
+
+```bash
+sed -i "s/final regex = '(\\^|:)\\\$id/final regex = '\$id/" \
+  at_client_sdk/packages/at_client/lib/src/collections/collections.dart
+
+# Verify the result — should read:  final regex = '$id\.$namespace$ownerFragment';
+grep 'final regex' at_client_sdk/packages/at_client/lib/src/collections/collections.dart
+```
+
+The fix removes the `(^|:)` prefix. The scan verb uses substring matching so
+the prefix was redundant anyway — `id\.namespace@owner` matches both self keys
+and `@recipient:id.namespace@owner` shared keys as substrings.
+
 ## Architecture notes
 
 Data flows strictly **agent → atServer → dashboard** — the dashboard never
