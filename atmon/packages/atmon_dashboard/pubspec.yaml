@@ -1,0 +1,30 @@
+name: atmon_dashboard
+description: "btop-style Flutter desktop dashboard for the atmon fleet monitor."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.6.0
+  flutter: ^3.29.0
+
+resolution: workspace
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  at_client: ^3.12.0
+  at_commons: ^5.7.0
+  at_utils: ^3.2.0
+  at_cli_commons: ^2.1.0
+  file_picker: ^11.0.0
+  atmon_models:
+    path: ../atmon_models
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

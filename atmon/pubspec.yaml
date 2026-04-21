@@ -1,0 +1,42 @@
+name: atmon
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+workspace:
+  - packages/atmon_models
+  - packages/atmon_agent
+  - packages/atmon_dashboard
+
+# All atmon packages depend (directly or transitively) on the gkc-enhance-api
+# branch of at_client_sdk. We point every relevant package at the locally
+# cloned SDK so the new AtCollection<T> API is available to both the agent
+# and the Flutter dashboard.
+dependency_overrides:
+  at_client:
+    path: ../at_client_sdk/packages/at_client
+  at_commons:
+    path: ../at_client_sdk/packages/at_commons
+  at_utils:
+    path: ../at_client_sdk/packages/at_utils
+  at_lookup:
+    path: ../at_client_sdk/packages/at_lookup
+  at_chops:
+    path: ../at_client_sdk/packages/at_chops
+  at_auth:
+    path: ../at_client_sdk/packages/at_auth
+  at_policy:
+    path: ../at_client_sdk/packages/at_policy
+  at_cli_commons:
+    path: ../at_client_sdk/packages/at_cli_commons
+  at_onboarding_cli:
+    path: ../at_client_sdk/packages/at_onboarding_cli
+  at_client_flutter:
+    path: ../at_client_sdk/packages/at_client_flutter
+  at_common_flutter:
+    path: ../at_client_sdk/packages/at_common_flutter
+  at_contact:
+    path: ../at_client_sdk/packages/at_contact
+  at_server_status:
+    path: ../at_client_sdk/packages/at_server_status

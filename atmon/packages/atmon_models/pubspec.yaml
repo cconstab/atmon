@@ -1,0 +1,17 @@
+name: atmon_models
+description: Shared CItem payload models for the atmon agent + dashboard.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  meta: ^1.16.0
+  at_client: ^3.12.0
+
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.25.0
